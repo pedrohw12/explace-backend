@@ -2,6 +2,12 @@ import * as Yup from 'yup';
 import City from '../models/City';
 
 class CityController {
+  async index(req, res) {
+    const cities = await City.findAll().sort('-createdAt');
+
+    return res.json(cities);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

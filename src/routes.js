@@ -7,17 +7,19 @@ import TuristicPointController from './app/controllers/TuristicPointController';
 import NeighborController from './app/controllers/NeighborController';
 import TradeController from './app/controllers/TradeController';
 
-import authMiddleware from './app/middlewares/auth';
+// import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
+
+routes.get('/cities', CityController.index);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.post('/cities', CityController.store);
 routes.post('/turisticpoints', TuristicPointController.store);
-routes.post('/neighbor', NeighborController.store);
-routes.post('/trade', TradeController.store);
+routes.post('/neighbors', NeighborController.store);
+routes.post('/trades', TradeController.store);
 
 // routes.use(authMiddleware);
 
