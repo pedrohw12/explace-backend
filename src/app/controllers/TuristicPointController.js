@@ -2,6 +2,12 @@ import * as Yup from 'yup';
 import TuristicPoint from '../models/TuristicPoint';
 
 class TuristicPointController {
+  async index(req, res) {
+    const turisticPoints = await TuristicPoint.findAll();
+
+    return res.json(turisticPoints);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

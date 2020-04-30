@@ -2,6 +2,12 @@ import * as Yup from 'yup';
 import Trade from '../models/Trade';
 
 class TradeController {
+  async index(req, res) {
+    const trades = await Trade.findAll();
+
+    return res.json(trades);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

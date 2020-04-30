@@ -3,7 +3,7 @@ import City from '../models/City';
 
 class CityController {
   async index(req, res) {
-    const cities = await City.findAll().sort('-createdAt');
+    const cities = await City.findAll();
 
     return res.json(cities);
   }

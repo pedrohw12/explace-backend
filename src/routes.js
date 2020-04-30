@@ -12,6 +12,9 @@ import TradeController from './app/controllers/TradeController';
 const routes = new Router();
 
 routes.get('/cities', CityController.index);
+routes.get('/neighbors', NeighborController.index);
+routes.get('/trades', TradeController.index);
+routes.get('/turisticpoints', TuristicPointController.index);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
