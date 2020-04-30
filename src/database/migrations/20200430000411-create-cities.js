@@ -15,7 +15,7 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       salary: {
         type: Sequelize.INTEGER,
