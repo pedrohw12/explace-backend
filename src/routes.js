@@ -3,6 +3,7 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import CityController from './app/controllers/CityController';
+import CommentCityController from './app/controllers/CommentCityController';
 import TuristicPointController from './app/controllers/TuristicPointController';
 import NeighborController from './app/controllers/NeighborController';
 import TradeController from './app/controllers/TradeController';
@@ -15,11 +16,13 @@ routes.get('/cities', CityController.index);
 routes.get('/neighbors', NeighborController.index);
 routes.get('/trades', TradeController.index);
 routes.get('/turisticpoints', TuristicPointController.index);
+routes.get('/commentcities', CommentCityController.index);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.post('/cities', CityController.store);
+routes.post('/commentcities/:id', CommentCityController.store);
 routes.post('/turisticpoints', TuristicPointController.store);
 routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);

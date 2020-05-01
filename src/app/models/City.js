@@ -9,6 +9,7 @@ class City extends Model {
         score: Sequelize.INTEGER,
         description: Sequelize.STRING,
         salary: Sequelize.INTEGER,
+        comment: Sequelize.STRING,
       },
       {
         sequelize,
