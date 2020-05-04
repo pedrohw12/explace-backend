@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import multer from 'multer';
+import multerConfig from './config/multer';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -11,6 +13,7 @@ import TradeController from './app/controllers/TradeController';
 // import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
+const upload = multer(multerConfig);
 
 routes.get('/cities', CityController.index);
 routes.get('/neighbors', NeighborController.index);
@@ -26,6 +29,10 @@ routes.post('/commentcities/:id', CommentCityController.store);
 routes.post('/turisticpoints', TuristicPointController.store);
 routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);
+
+routes.post('/files', upload.single('file'), (req, res) => {
+  return res.json({ ok: true });
+});
 
 // routes.use(authMiddleware);
 

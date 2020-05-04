@@ -3,7 +3,9 @@ import City from '../models/City';
 
 class CommentCityController {
   async index(req, res) {
-    const comments = await City.findAll();
+    const comments = await City.findAll({
+      where: { comment: city.comment },
+    });
 
     return res.json(comments);
   }
