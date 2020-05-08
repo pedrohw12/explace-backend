@@ -19,13 +19,13 @@ routes.get('/cities', CityController.index);
 routes.get('/neighbors', NeighborController.index);
 routes.get('/trades', TradeController.index);
 routes.get('/turisticpoints', TuristicPointController.index);
-routes.get('/commentcities', CommentCityController.index);
+// routes.get('/commentcities', CommentCityController.index);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.post('/cities', CityController.store);
-routes.post('/commentcities/:id', CommentCityController.store);
+routes.post('/city/:city_id/comments', CommentCityController.store);
 routes.post('/turisticpoints', TuristicPointController.store);
 routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);
