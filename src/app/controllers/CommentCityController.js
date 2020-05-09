@@ -13,7 +13,7 @@ class CommentCityController {
     // }
 
     const { city_id } = req.params;
-    console.log(city_id)
+    console.log('CONSOLE LOG CITY_ID', city_id)
 
     const cityIndex = await City.findByPk(city_id);
     console.log('CONSOLE LOG CITY INDEX',cityIndex);

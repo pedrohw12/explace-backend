@@ -66,7 +66,6 @@ class CityController {
       name,
       description,
       score,
-      comment,
     });
   }
 }

@@ -16,6 +16,7 @@ class CityComment extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'author_id', as: 'author' });
+    this.belongsTo(models.City, { foreignKey: 'city_id', as: 'city' });
   }
 }
 

@@ -11,7 +11,23 @@ module.exports = {
       },
       comment: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      author_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+        autoIncrement: false
+      },
+      city_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'cities', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
         allowNull: false,
+        autoIncrement: false
       },
       created_at: {
         type: Sequelize.DATE,
