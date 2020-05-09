@@ -3,6 +3,12 @@ import CityComment from '../models/CityComment';
 import City from '../models/City';
 
 class CommentCityController {
+  async index(req, res) {
+    const comments = await CityComment.findAll();
+
+    return res.json(comments);
+  }
+
   async store(req, res) {
     // const schema = Yup.object().shape({
     //   comment: Yup.string().required,

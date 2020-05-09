@@ -19,7 +19,7 @@ routes.get('/cities', CityController.index);
 routes.get('/neighbors', NeighborController.index);
 routes.get('/trades', TradeController.index);
 routes.get('/turisticpoints', TuristicPointController.index);
-// routes.get('/commentcities', CommentCityController.index);
+routes.get('/comments', CommentCityController.index);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
