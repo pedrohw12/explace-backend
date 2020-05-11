@@ -7,11 +7,11 @@ class FindCityController {
       name: Yup.string().required(),
     });
 
-    if (!(await schema.isValid(req.body))) {
+    if (!(await schema.isValid(req.query))) {
       return res.status(400).json({ error: 'Please inform a name.' });
     }
 
-    const cityExists = await City.findOne({ where: { name: req.body.name } });
+    const cityExists = await City.findOne({ where: { name: req.query.name } });
 
     if (!cityExists) {
       return res.status(400).json({ message: 'City not found' });

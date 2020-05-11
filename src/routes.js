@@ -17,7 +17,7 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.get('/cities', CityController.index);
-routes.get('/city/name', FindCityController.index);
+routes.get('/city', FindCityController.index);
 routes.get('/neighbors', NeighborController.index);
 routes.get('/trades', TradeController.index);
 routes.get('/turisticpoints', TuristicPointController.index);
