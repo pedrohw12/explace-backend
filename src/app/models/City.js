@@ -17,6 +17,10 @@ class City extends Model {
 
     return this;
   }
+
+  static associations(models) {
+    this.belongsTo(models.File, { foreignKey: 'file_id', as: 'file' });
+  }
 }
 
 export default City;

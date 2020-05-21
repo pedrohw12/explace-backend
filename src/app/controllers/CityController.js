@@ -1,5 +1,6 @@
-import * as Yup from 'yup';
-import City from '../models/City';
+import * as Yup from "yup";
+import City from "../models/City";
+import File from "../models/File";
 
 class CityController {
   async index(req, res) {
@@ -14,17 +15,19 @@ class CityController {
       description: Yup.string(),
       salary: Yup.number().positive().integer(),
       state: Yup.string().required(),
-      score: Yup.number().required().positive().integer()
+      score: Yup.number().required().positive().integer(),
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Was not possible to create a new city.' });
+      return res
+        .status(400)
+        .json({ error: "Was not possible to create a new city." });
     }
 
     const cityExists = await City.findOne({ where: { name: req.body.name } });
 
     if (cityExists) {
-      return res.status(400).json({ error: 'City already exists.' });
+      return res.status(400).json({ error: "City already exists." });
     }
 
     const { id, name, state, score } = await City.create(req.body);
@@ -44,10 +47,10 @@ class CityController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation failed' });
+      return res.status(400).json({ error: "Validation failed" });
     }
 
-    const { name, state } = req.body;
+    const { name } = req.body;
 
     const city = await City.findByPk(req.cityId);
 
@@ -55,17 +58,28 @@ class CityController {
       const cityExists = await City.findOne({ where: { name } });
 
       if (cityExists) {
-        return res.status(400).json({ error: 'City already exists.' });
+        return res.status(400).json({ error: "City already exists." });
       }
     }
 
     await city.update(req.body);
+
+    const { id, name, file } = await City.findByPk(req.cityId, {
+      include: [
+        {
+          model: File,
+          as: "file",
+          attributes: ["id", "path", "url"],
+        },
+      ],
+    });
 
     return res.json({
       id,
       name,
       description,
       score,
+      file,
     });
   }
 }

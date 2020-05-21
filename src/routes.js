@@ -10,6 +10,7 @@ import CommentCityController from './app/controllers/CommentCityController';
 import TuristicPointController from './app/controllers/TuristicPointController';
 import NeighborController from './app/controllers/NeighborController';
 import TradeController from './app/controllers/TradeController';
+import FileController from './app/controllers/FileController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -19,7 +20,7 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-routes.use(authMiddleware);
+// routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
 
@@ -36,8 +37,7 @@ routes.post('/turisticpoints', TuristicPointController.store);
 routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);
 
-routes.post('/files', upload.single('file'), (req, res) => {
-  return res.json({ ok: true });
-});
+routes.post('/files', upload.single('file'), FileController.store);
+
 
 export default routes;
