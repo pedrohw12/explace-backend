@@ -23,7 +23,9 @@ routes.post('/sessions', SessionController.store);
 // routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
+// routes.put('/cities/:city_id',  upload.single('file'), CityController.update);
 
+// routes.get('/cities/:city_id/edit', CityController.edit);
 routes.get('/cities', CityController.index);
 routes.get('/city', FindCityController.index);
 routes.get('/neighbors', NeighborController.index);
@@ -37,7 +39,7 @@ routes.post('/turisticpoints', TuristicPointController.store);
 routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);
 
-routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/files/:city_id', upload.single('file'), FileController.store);
 
 
 export default routes;

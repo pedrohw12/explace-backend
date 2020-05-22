@@ -41,30 +41,32 @@ class CityController {
   }
 
   async update(req, res) {
-    const schema = Yup.object().shape({
-      name: Yup.string(),
-      state: Yup.string().required(),
-    });
+    const { originalname: name, path } = req.file; // [ OK ]
 
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: "Validation failed" });
-    }
+    const city_id = req.params.city_id; // [ OK ]
 
-    const { name } = req.body;
+    const city = await City.findByPk(city_id); // [ OK ]
 
-    const city = await City.findByPk(req.cityId);
+    console.log("CITY", city.name);
 
-    if (name !== city.name) {
-      const cityExists = await City.findOne({ where: { name } });
+    // salva o nome da imagem no banco de dados
+    const newFile = await File.create({
+      name,
+      path,
+    }); // [ OK ] add na tabela de files
 
-      if (cityExists) {
-        return res.status(400).json({ error: "City already exists." });
-      }
-    }
+    console.log('NEW FILE ID', newFile.id);
 
-    await city.update(req.body);
+    const { city_name } = req.body;
+    const file_id = newFile.id;
 
-    const { id, name, file } = await City.findByPk(req.cityId, {
+    // atualiza a tabela de cidades com o novo nome e o id da imagem.
+
+    await city.update({ city_name, file_id });
+
+    console.log('APÓS O UPDATE DA CITY _ NEWFILE ID ', file_id);
+
+    const { id, file } = await City.findByPk(req.params.city_id, {
       include: [
         {
           model: File,
@@ -76,7 +78,7 @@ class CityController {
 
     return res.json({
       id,
-      name,
+      city_name,
       description,
       score,
       file,
