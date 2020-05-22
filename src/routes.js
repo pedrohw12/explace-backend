@@ -40,6 +40,9 @@ routes.post('/neighbors', NeighborController.store);
 routes.post('/trades', TradeController.store);
 
 routes.post('/files/:city_id', upload.single('file'), FileController.store);
+// este 'file' dentro de upload.single() refere ao nome que será colocado na requisição
+// pelo insomnia, ou seja, no insomnia, ao selecionar multi form, o nome será o mesmo que está
+// sendo dito na rota dentro do upload.single()
 
 
 export default routes;
