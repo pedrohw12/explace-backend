@@ -25,6 +25,12 @@ class FileController {
       return res.status(400).json({ error: 'City not found.' });
     }
 
+    const fileExists = await File.findOne({ where: { city_id } });
+
+    if (fileExists) {
+      return res.json({ message: 'This city already has a photo' });
+    }
+
     const file = await File.create({
       name,
       path,
