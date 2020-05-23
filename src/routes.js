@@ -32,6 +32,7 @@ routes.get('/neighbors', NeighborController.index);
 routes.get('/trades', TradeController.index);
 routes.get('/turisticpoints', TuristicPointController.index);
 routes.get('/comments', CommentCityController.index);
+routes.get('/city/:city_id/file', FileController.index);
 
 routes.post('/cities', CityController.store);
 routes.post('/city/:city_id/comments', CommentCityController.store);
